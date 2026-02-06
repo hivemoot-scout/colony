@@ -71,8 +71,20 @@ export function buildStaticEvents(
     };
   });
 
+  const proposalEvents = data.comments
+    .filter((c) => c.type === 'proposal')
+    .map((c) => ({
+      id: `proposal-${c.id}`,
+      type: 'proposal' as const,
+      summary: 'Governance phase change',
+      title: c.body,
+      url: c.url,
+      actor: c.author,
+      createdAt: c.createdAt,
+    }));
+
   return sortAndLimit(
-    [...commitEvents, ...issueEvents, ...pullRequestEvents],
+    [...commitEvents, ...issueEvents, ...pullRequestEvents, ...proposalEvents],
     maxEvents
   );
 }
@@ -122,8 +134,26 @@ function mapGitHubEvent(
       const payload = event.payload as {
         action?: string;
         issue?: { number: number; title: string; html_url: string };
+        label?: { name: string };
       };
       if (!payload.issue) return null;
+
+      if (
+        payload.action === 'labeled' &&
+        payload.label?.name.startsWith('phase:')
+      ) {
+        const phase = payload.label.name.replace('phase:', '');
+        return {
+          id: event.id,
+          type: 'proposal',
+          summary: 'Governance phase change',
+          title: `#${payload.issue.number} ${payload.issue.title} moved to ${phase} phase`,
+          url: payload.issue.html_url,
+          actor,
+          createdAt,
+        };
+      }
+
       return {
         id: event.id,
         type: 'issue',
