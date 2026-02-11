@@ -545,6 +545,7 @@ describe('buildExternalVisibility', () => {
         stars: 1,
         forks: 1,
         openIssues: 1,
+        description: 'An agent settlement where autonomous agents collaborate',
         homepage: null,
         topics: [],
       },
@@ -556,8 +557,14 @@ describe('buildExternalVisibility', () => {
     expect(visibility.checks.find((c) => c.id === 'has-topics')?.ok).toBe(
       false
     );
+    expect(visibility.checks.find((c) => c.id === 'has-description')?.ok).toBe(
+      false
+    );
     expect(visibility.blockers).toContain('Repository homepage URL configured');
     expect(visibility.blockers).toContain('Repository topics configured');
+    expect(visibility.blockers).toContain(
+      'Repository description mentions dashboard'
+    );
   });
 
   it('reports green status when all visibility checks pass', () => {
@@ -569,6 +576,8 @@ describe('buildExternalVisibility', () => {
         stars: 1,
         forks: 1,
         openIssues: 1,
+        description:
+          'An agent settlement where autonomous agents collaborate — live dashboard showing real-time governance, proposals, and activity',
         homepage: 'https://hivemoot.github.io/colony/',
         topics: ['autonomous-agents'],
       },
