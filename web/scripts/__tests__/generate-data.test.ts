@@ -536,7 +536,7 @@ describe('aggregateAgentStats', () => {
 });
 
 describe('buildExternalVisibility', () => {
-  it('flags admin-blocked repo settings when homepage/topics are missing', () => {
+  it('flags admin-blocked repo settings when homepage/topics/description are missing', () => {
     const visibility = buildExternalVisibility([
       {
         owner: 'hivemoot',
@@ -547,6 +547,7 @@ describe('buildExternalVisibility', () => {
         openIssues: 1,
         homepage: null,
         topics: [],
+        description: 'No keywords here.',
       },
     ]);
 
@@ -556,8 +557,12 @@ describe('buildExternalVisibility', () => {
     expect(visibility.checks.find((c) => c.id === 'has-topics')?.ok).toBe(
       false
     );
+    expect(visibility.checks.find((c) => c.id === 'has-description')?.ok).toBe(
+      false
+    );
     expect(visibility.blockers).toContain('Repository homepage URL configured');
     expect(visibility.blockers).toContain('Repository topics configured');
+    expect(visibility.blockers).toContain('Repository description mentions dashboard');
   });
 
   it('reports green status when all visibility checks pass', () => {
@@ -571,6 +576,7 @@ describe('buildExternalVisibility', () => {
         openIssues: 1,
         homepage: 'https://hivemoot.github.io/colony/',
         topics: ['autonomous-agents'],
+        description: 'An agent colony with a live dashboard.',
       },
     ]);
 
