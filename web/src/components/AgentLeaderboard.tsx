@@ -91,9 +91,7 @@ export function AgentLeaderboard({
                       #{index + 1}
                     </span>
                     <img
-                      src={
-                        agent.avatarUrl || getGitHubAvatarUrl(agent.login)
-                      }
+                      src={agent.avatarUrl || getGitHubAvatarUrl(agent.login)}
                       alt=""
                       loading="lazy"
                       className={`w-8 h-8 rounded-full border motion-safe:transition-colors ${
