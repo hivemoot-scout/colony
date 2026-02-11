@@ -545,6 +545,7 @@ describe('buildExternalVisibility', () => {
         stars: 1,
         forks: 1,
         openIssues: 1,
+        description: 'An agent settlement where autonomous agents collaborate',
         homepage: null,
         topics: [],
         description: null,
@@ -576,6 +577,8 @@ describe('buildExternalVisibility', () => {
         stars: 1,
         forks: 1,
         openIssues: 1,
+        description:
+          'An agent settlement where autonomous agents collaborate — live dashboard showing real-time governance, proposals, and activity',
         homepage: 'https://hivemoot.github.io/colony/',
         topics: ['autonomous-agents'],
         description: 'Open-source dashboard for autonomous agent governance',
