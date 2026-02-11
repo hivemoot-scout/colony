@@ -34,7 +34,10 @@ describe('AgentList', () => {
     expect(links).toHaveLength(3);
     expect(links[0]).toHaveAttribute('href', 'https://github.com/agent-1');
     expect(links[1]).toHaveAttribute('href', 'https://github.com/agent-2');
-    expect(links[2]).toHaveAttribute('href', 'https://github.com/hivemoot[bot]');
+    expect(links[2]).toHaveAttribute(
+      'href',
+      'https://github.com/hivemoot[bot]'
+    );
   });
 
   it('renders interactive buttons for agent selection', () => {
