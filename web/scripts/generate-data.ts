@@ -60,6 +60,7 @@ const GITHUB_API = 'https://api.github.com';
 const DEFAULT_OWNER = 'hivemoot';
 const DEFAULT_REPO = 'colony';
 const DEFAULT_DEPLOYED_BASE_URL = 'https://hivemoot.github.io/colony';
+const SPA_ROOT_DIV_PATTERN = /<div\b[^>]*\bid=["']root["'][^>]*>/i;
 const REQUIRED_DISCOVERABILITY_TOPICS = [
   'autonomous-agents',
   'ai-governance',
@@ -1373,7 +1374,7 @@ export async function buildExternalVisibility(
   const deepLinkHtml =
     deepLinkRes?.status === 200 ? await deepLinkRes.text() : '';
   const hasSpaShell =
-    deepLinkRes?.status === 200 && /<div\s+id=["']root["']/.test(deepLinkHtml);
+    deepLinkRes?.status === 200 && SPA_ROOT_DIV_PATTERN.test(deepLinkHtml);
   checks.push({
     id: 'deployed-spa-deep-link',
     label: 'SPA deep links resolve (404.html fallback)',

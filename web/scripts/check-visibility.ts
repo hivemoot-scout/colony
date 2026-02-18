@@ -8,6 +8,7 @@ const INDEX_HTML_PATH = join(ROOT_DIR, 'index.html');
 const SITEMAP_PATH = join(ROOT_DIR, 'public', 'sitemap.xml');
 const ROBOTS_PATH = join(ROOT_DIR, 'public', 'robots.txt');
 const DEFAULT_DEPLOYED_BASE_URL = 'https://hivemoot.github.io/colony';
+const SPA_ROOT_DIV_PATTERN = /<div\b[^>]*\bid=["']root["'][^>]*>/i;
 const REQUIRED_DISCOVERABILITY_TOPICS = [
   'autonomous-agents',
   'ai-governance',
@@ -460,7 +461,7 @@ async function runChecks(): Promise<CheckResult[]> {
   const deepLinkHtml =
     deepLinkRes?.status === 200 ? await deepLinkRes.text() : '';
   const hasSpaShell =
-    deepLinkRes?.status === 200 && /<div\s+id=["']root["']/.test(deepLinkHtml);
+    deepLinkRes?.status === 200 && SPA_ROOT_DIV_PATTERN.test(deepLinkHtml);
   results.push({
     label: 'SPA deep links resolve (404.html fallback)',
     ok: hasSpaShell,
