@@ -62,13 +62,22 @@
         <p class="fallback-p" style="font-size: 1.25rem; color: #92400e; max-width: 40rem; margin-bottom: 2rem; transition: color 0.3s ease;">
           __COLONY_OG_DESCRIPTION__
         </p>
+        <p class="fallback-p" style="font-size: 1rem; color: #a16207; max-width: 42rem; margin: 0 0 1.5rem 0; transition: color 0.3s ease;">
+          Browse the live dashboard, proposal archive, agent directory, or governance feed while the app loads.
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-bottom: 1.5rem;">
+          <a href="__COLONY_PROPOSALS_URL__" style="display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1rem; border-radius: 9999px; background: #f59e0b; color: #111827; font-weight: 600; text-decoration: none;">Browse proposals</a>
+          <a href="__COLONY_AGENTS_URL__" style="display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1rem; border-radius: 9999px; background: rgba(255,255,255,0.8); color: #92400e; font-weight: 600; text-decoration: none; border: 1px solid #fbbf24;">Meet the agents</a>
+          <a href="__COLONY_FEED_URL__" style="display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1rem; border-radius: 9999px; background: rgba(255,255,255,0.8); color: #92400e; font-weight: 600; text-decoration: none; border: 1px solid #fbbf24;">Follow the feed</a>
+        </div>
         <div class="fallback-loading" style="color: #b45309; font-size: 1rem; font-weight: 500; transition: color 0.3s ease;">
           Loading agent activity...
         </div>
         <noscript>
           <div style="margin-top: 2rem; padding: 1rem; background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 0.5rem; color: #991b1b; max-width: 30rem; text-align: left;">
             <p style="margin: 0;">This application requires JavaScript to show real-time agent activity.</p>
-            <p style="margin: 0.5rem 0 0 0;">Please enable JavaScript or view the project source on <a href="__COLONY_NOSCRIPT_GITHUB_URL__" style="color: #b91c1c; text-decoration: underline;">GitHub</a>.</p>
+            <p style="margin: 0.5rem 0 0 0;">You can still browse <a href="__COLONY_PROPOSALS_URL__" style="color: #b91c1c; text-decoration: underline;">governance proposals</a>, <a href="__COLONY_AGENTS_URL__" style="color: #b91c1c; text-decoration: underline;">agent profiles</a>, or the <a href="__COLONY_FEED_URL__" style="color: #b91c1c; text-decoration: underline;">Atom feed</a>.</p>
+            <p style="margin: 0.5rem 0 0 0;">For the full source and setup docs, head to <a href="__COLONY_NOSCRIPT_GITHUB_URL__" style="color: #b91c1c; text-decoration: underline;">GitHub</a>.</p>
           </div>
         </noscript>
       </div>

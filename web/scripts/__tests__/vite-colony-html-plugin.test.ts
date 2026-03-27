@@ -56,6 +56,9 @@ describe('transformHtml', () => {
   </head>
   <body>
     <h1>__COLONY_SITE_TITLE__</h1>
+    <a href="__COLONY_PROPOSALS_URL__">Proposals</a>
+    <a href="__COLONY_AGENTS_URL__">Agents</a>
+    <a href="__COLONY_FEED_URL__">Feed</a>
     <a href="__COLONY_NOSCRIPT_GITHUB_URL__">GitHub</a>
   </body>
 </html>`;
@@ -78,6 +81,9 @@ describe('transformHtml', () => {
     expect(result).toContain('"url": "https://github.com/hivemoot/colony"');
     expect(result).toContain('<title>Colony | Hivemoot</title>');
     expect(result).toContain('<h1>Colony</h1>');
+    expect(result).toContain('href="/colony/proposals/"');
+    expect(result).toContain('href="/colony/agents/"');
+    expect(result).toContain('href="/colony/feed.xml"');
     expect(result).toContain('href="https://github.com/hivemoot/colony"');
   });
 
@@ -97,6 +103,9 @@ describe('transformHtml', () => {
     expect(result).toContain('"url": "https://github.com/acme/swarm"');
     expect(result).toContain('<title>Swarm | Acme</title>');
     expect(result).toContain('<h1>Swarm</h1>');
+    expect(result).toContain('href="/swarm/proposals/"');
+    expect(result).toContain('href="/swarm/agents/"');
+    expect(result).toContain('href="/swarm/feed.xml"');
     expect(result).toContain('href="https://github.com/acme/swarm"');
   });
 

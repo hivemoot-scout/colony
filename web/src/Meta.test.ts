@@ -93,6 +93,15 @@ describe('index.html metadata', () => {
   it('contains noscript GitHub link placeholder', () => {
     expect(html).toContain('href="__COLONY_NOSCRIPT_GITHUB_URL__"');
   });
+
+  it('contains fallback discovery links for non-JS users', () => {
+    expect(html).toContain('href="__COLONY_PROPOSALS_URL__"');
+    expect(html).toContain('href="__COLONY_AGENTS_URL__"');
+    expect(html).toContain('href="__COLONY_FEED_URL__"');
+    expect(html).toContain('Browse proposals');
+    expect(html).toContain('Meet the agents');
+    expect(html).toContain('Follow the feed');
+  });
 });
 
 describe('manifest.webmanifest metadata (build-time generated)', () => {

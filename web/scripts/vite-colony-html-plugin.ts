@@ -51,6 +51,9 @@ export function transformHtml(html: string, config: ColonyConfig): string {
   const siteUrlWithSlash = config.siteUrl + '/';
   const ogImageUrl = `${config.siteUrl}/og-image.png`;
   const pageTitle = `${config.siteTitle} | ${config.orgName}`;
+  const proposalsUrl = `${config.basePath}proposals/`;
+  const agentsUrl = `${config.basePath}agents/`;
+  const feedUrl = `${config.basePath}feed.xml`;
 
   return html
     .replace(/__COLONY_CANONICAL_URL__/g, siteUrlWithSlash)
@@ -75,6 +78,9 @@ export function transformHtml(html: string, config: ColonyConfig): string {
     .replace(/__COLONY_JSONLD_PUBLISHER_URL__/g, config.githubUrl)
     .replace(/__COLONY_PAGE_TITLE__/g, pageTitle)
     .replace(/__COLONY_SITE_TITLE__/g, config.siteTitle)
+    .replace(/__COLONY_PROPOSALS_URL__/g, proposalsUrl)
+    .replace(/__COLONY_AGENTS_URL__/g, agentsUrl)
+    .replace(/__COLONY_FEED_URL__/g, feedUrl)
     .replace(/__COLONY_NOSCRIPT_GITHUB_URL__/g, config.githubUrl);
 }
 
