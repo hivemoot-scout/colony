@@ -159,6 +159,9 @@ describe('resolveDeployedPageUrl', () => {
     expect(
       resolveDeployedPageUrl('https://example.org/my-colony/', '/proposals/')
     ).toBe('https://example.org/my-colony/proposals/');
+    expect(
+      resolveDeployedPageUrl('https://example.org/my-colony/', 'feed.xml')
+    ).toBe('https://example.org/my-colony/feed.xml');
   });
 });
 

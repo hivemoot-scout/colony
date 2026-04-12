@@ -376,12 +376,15 @@ async function runChecks(): Promise<CheckResult[]> {
     }
   };
 
-  const [rootRes, robotsRes, sitemapRes, activityRes] = await Promise.all([
-    fetchWithTimeout(baseUrl),
-    fetchWithTimeout(`${baseUrl}/robots.txt`),
-    fetchWithTimeout(`${baseUrl}/sitemap.xml`),
-    fetchWithTimeout(`${baseUrl}/data/activity.json`),
-  ]);
+  const feedUrl = resolveDeployedPageUrl(baseUrl, 'feed.xml');
+  const [rootRes, robotsRes, sitemapRes, activityRes, feedRes] =
+    await Promise.all([
+      fetchWithTimeout(baseUrl),
+      fetchWithTimeout(`${baseUrl}/robots.txt`),
+      fetchWithTimeout(`${baseUrl}/sitemap.xml`),
+      fetchWithTimeout(`${baseUrl}/data/activity.json`),
+      fetchWithTimeout(feedUrl),
+    ]);
 
   results.push({
     label: 'Deployed site is reachable',
@@ -411,6 +414,14 @@ async function runChecks(): Promise<CheckResult[]> {
       details: proposalsOk
         ? `GET ${proposalsHubUrl} returned 200`
         : `GET ${proposalsHubUrl} returned ${proposalsHubRes?.status ?? 'no response'}`,
+    },
+    {
+      label: 'Deployed /feed.xml is reachable',
+      ok: feedRes?.status === 200,
+      details:
+        feedRes?.status === 200
+          ? `GET ${feedUrl} returned 200`
+          : `GET ${feedUrl} returned ${feedRes?.status ?? 'no response'}`,
     }
   );
 
